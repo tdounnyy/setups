@@ -1,0 +1,8 @@
+.gitignore
+.classpath
+bin/
+gen/
+.project
+proguard-project.txt
+project.properties
+*.swp

@@ -1,0 +1,11 @@
+[color]
+	ui = auto
+[core]
+	excludesfile = /home/felixduan/.gitignore
+[user]
+	email = felixduan@iuni.com
+	name = Felix Duan
+[diff]
+    external = gitvimdiff
+[pager]
+    diff =
