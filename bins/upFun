@@ -1,0 +1,80 @@
+
+#!/bin/bash
+
+##
+# Print usage page
+##
+function usagePage() {
+echo "
+------------------------------------------------------------------
+ Felix\`s up scrpit
+ Free you from cd ..;cd ..;cd ...; FatFingerError!!
+------------------------------------------------------------------
+ Support two mode command:
+ 1) up [N]       :   go up N level
+ 2) up [PREFIX]  :   go to the first parent matchs the prefix
+
+ TODO: PREFIX mode dosen\`t support whitespace, maybe some other
+       REGULAR char
+------------------------------------------------------------------
+"
+}
+
+##
+# Repeatly go up by $1 times.
+#
+# Recursive call
+# Stop at /
+# Stop at $1 == 0
+#
+##
+function upByIntMode {
+    if [ $1 -eq 0 ]; then
+        return
+    elif [ ! "/" == "$PWD" ] || [ $1 -eq 0 ]; then
+        cd ..
+        # recursion
+        upByIntMode `expr $1 - 1`
+    fi
+}
+
+##
+# Go to parent dir which matches the prefix $1
+#
+# Recursive call
+# Stop at $PREF not contained
+# Stop at basename match $PREF 
+#
+##
+function upByPrefixMode {
+    # test if $1 contain $PREF
+    if [[ $1 == *$PREF* ]]; then
+        BASENAME=`basename $1`
+        # test if $1 is the target dir
+        if [[ $BASENAME == $PREF* ]]; then
+            cd $1
+        else
+            # recursion
+            upByPrefixMode `dirname $1`
+        fi
+    else
+        usagePage
+    fi
+}
+
+##
+# main
+##
+if [ $# -ne 1 ]; then
+    # MUST supply 1 param
+    usagePage;
+else
+    # test if $1 is positive int, matches int mode
+    if [ $1 -gt 0 ] 2>/dev/null; then
+        upByIntMode $1
+    else
+        # matches prefix mode
+        PREF=$1
+        upByPrefixMode $PWD
+    fi
+fi

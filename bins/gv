@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# only accpet one param
+if [ $# != 1 ]; then
+    echo "param ($*) num != 1  exit!"
+    exit;
+fi
+
+# SAMPLE:
+# $1=res/values-my-rMM/strings.xml:800:
+# FILE=res/values-my-rMM/strings.xml
+# LINE=800
+
+FILE=`echo $1 | sed -ne 's/\(^.*\):[0-9]*:/\1/p'`
+LINE=`echo $1 | sed -ne 's/^.*:\(.*\):.*/\1/p'`
+
+# This also works
+# if [ $LINE ] ; then
+if [ -n "$LINE" ] ; then
+    gvim -f $FILE +$LINE &
+else
+    gvim -f $1 &
+fi
