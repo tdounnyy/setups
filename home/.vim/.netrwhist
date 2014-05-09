@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/work/aurora'
+let g:netrw_dirhist_2='/work/aurora/Aurora_SystemUI'
+let g:netrw_dirhist_3='/work/aurora/Aurora_SystemUI/code/src/com/android/systemui/recent'
+let g:netrw_dirhist_4='/work/aurora/Aurora_SystemUI'
+let g:netrw_dirhist_5='/work/aurora/Aurora_SystemUI/code/src/com/android/systemui/recent'
+let g:netrw_dirhist_6='/home/felixduan/share'
+let g:netrw_dirhist_7='/work/tools/adt-bundle-linux-x86_64-20131030/sdk/samples/android-13/AccessibilityService'
+let g:netrw_dirhist_8='/work/aurora_20140409/iuni_android_20140409/trunk/build'
